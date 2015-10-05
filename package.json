@@ -1,0 +1,40 @@
+{
+  "name": "react-conditional",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Component for rendering condition content.",
+  "main": "src/Conditional.js",
+  "author": "Alejandro Sellero",
+  "license": "MIT",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "reactify": "^0.17.1"
+  },
+  "devDependencies": {
+    "react-component-gulp-tasks": "^0.1.1",
+    "gulp": "^3.8.10"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  },
+  "scripts": {
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "keywords": [
+    "react",
+    "react-component"
+  ]
+}

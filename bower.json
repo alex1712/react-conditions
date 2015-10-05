@@ -1,0 +1,29 @@
+{
+  "name": "react-conditional",
+  "main": "dist/react-conditional.min.js",
+  "version": "0.0.1",
+  "homepage": "",
+  "authors": [
+    "Alejandro Sellero"
+  ],
+  "description": "Component for rendering condition content.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "react-component"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "package.json",
+    "src",
+    "node_modules",
+    "example",
+    "test"
+  ]
+}
