@@ -27,7 +27,28 @@ TODO
 TODO
 
 ```
-Code here
+<Conditional>
+	<Conditional.If test={true}>
+		Hello
+	</Conditional.If>
+	<Conditional.ElseIf test={true}>
+		Hello2
+	</Conditional.ElseIf>
+</Conditional>
+```
+
+```
+<Conditional>
+	<Conditional.If test={false}>
+		Hello
+	</Conditional.If>
+	<Conditional.ElseIf test={false}>
+		Hello2
+	</Conditional.ElseIf>
+	<Conditional.Else >
+		Else
+	</Conditional.Else>
+</Conditional>
 ```
 
 ### Properties
