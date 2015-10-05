@@ -1,5 +1,5 @@
 var React = require('react'),
-	Conditional = require('react-conditional');
+	Conditional = require('react-conditions');
 
 var App = React.createClass({
 	render: function() {

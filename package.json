@@ -1,18 +1,17 @@
 {
-  "name": "react-conditional",
+  "name": "react-conditions",
   "version": "0.0.1",
-  "private": true,
   "description": "Component for rendering condition content.",
   "main": "src/Conditional.js",
   "author": "Alejandro Sellero",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/alex1712/react-conditions",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/alex1712/react-conditions.git"
   },
   "bugs": {
-    "url": ""
+    "url": "https://github.com/alex1712/react-conditions/issues"
   },
   "dependencies": {
     "react": "^0.13.3",
