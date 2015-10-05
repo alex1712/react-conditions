@@ -1,4 +1,4 @@
-React Component Starter
+React Conditional
 =======================
 
 TODO
