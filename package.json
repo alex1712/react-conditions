@@ -2,7 +2,7 @@
   "name": "react-conditions",
   "version": "0.0.4",
   "description": "Component for rendering condition content.",
-  "main": "src/Conditional.js",
+  "main": "src/index.js",
   "author": "Alejandro Sellero",
   "license": "MIT",
   "homepage": "https://github.com/alex1712/react-conditions",

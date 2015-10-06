@@ -1,28 +1,28 @@
 var React = require('react');
 
-//var WithKeyedChildren = require('./mixins/WithKeyedChildren');
+var TestEvaluator 		= require('../mixins/TestEvaluator');
+var WithKeyedChildren 	= require('../mixins/WithKeyedChildren');
 
 var Conditional = React.createClass({
+	mixins: [TestEvaluator, WithKeyedChildren],
 
-	_findChildByType(type) {
-		return this.props.children.find(child => child.type === type);
-	},
-	
 	_findChildToRender() {
 		var childrensCount = React.Children.count(this.props.children); 
 		if (childrensCount === 0) return null;
-		else if (childrensCount === 1) {
+		
+		if (childrensCount === 1) {
 			var child = this.props.children;
-			var testVal = typeof child.props.test === 'function' ? child.props.test() : child.props.test;
+			var testVal = this.evaluateTestProp(child.props);
 			return child.type === Conditional.If && testVal ? child : null;
 		} else {
 			var validChild = this.props.children.find(child => {
-				var testVal = typeof child.props.test === 'function' ? child.props.test() : child.props.test;
+				var testVal = this.evaluateTestProp(child.props);
 				return (child.type === Conditional.If || child.type === Conditional.ElseIf) && testVal;
 			});
+			
 			if(validChild) return validChild;
 			else {
-				var elseComponent = this._findChildByType(Conditional.Else);
+				var elseComponent = this.findChildByType(Conditional.Else);
 				return elseComponent ? elseComponent : null;	
 			}  
 			
