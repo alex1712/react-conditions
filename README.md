@@ -29,7 +29,7 @@ TODO
 
 
 ```
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 <If test={true}>
 	<span>Hello</span>
@@ -37,7 +37,7 @@ var	{ Conditional, If } = require('react-conditions');
 ```
 
 ```
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 <If test={function() { return 1 === 2}}>
 	<span>Hello</span>
@@ -45,7 +45,7 @@ var	{ Conditional, If } = require('react-conditions');
 ```
 
 ```
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 <Conditional>
 	<Conditional.If test={function() { return  'foo' === 'bar';}}>
@@ -58,7 +58,7 @@ var	{ Conditional, If } = require('react-conditions');
 ```
 
 ```
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 <Conditional>
 	<Conditional.If test={true}>
@@ -71,7 +71,7 @@ var	{ Conditional, If } = require('react-conditions');
 ```
 
 ```
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 <Conditional>
 	<Conditional.If test={false}>
@@ -84,6 +84,55 @@ var	{ Conditional, If } = require('react-conditions');
 		Else
 	</Conditional.Else>
 </Conditional>
+```
+
+```
+var	{ Conditional, If, Switch } = require('react-conditions');
+
+<Switch value="foo" breakInMatch={false}>
+	<Switch.Case testValue="bar">
+		BAR
+	</Switch.Case>
+	<Switch.Case testValue="foo">
+		Foo
+	</Switch.Case>
+	<Switch.Default>
+		Default
+	</Switch.Default>
+</Switch>
+```
+
+```
+var	{ Conditional, If, Switch } = require('react-conditions');
+
+<Switch value="foo" breakInMatch={false}>
+	<Switch.Case testValue="bar">
+		BAR
+	</Switch.Case>
+	<Switch.Case testValue="foo">
+		Foo
+		<Switch.Break />
+	</Switch.Case>
+	<Switch.Default>
+		Default
+	</Switch.Default>
+</Switch>
+```
+
+```
+var	{ Conditional, If, Switch } = require('react-conditions');
+
+<Switch value="bar">
+	<Switch.Case testValue="bar">
+		BAR
+	</Switch.Case>
+	<Switch.Case testValue="foo">
+		Foo
+	</Switch.Case>
+	<Switch.Default>
+		Default
+	</Switch.Default>
+</Switch>
 ```
 
 ### Properties
