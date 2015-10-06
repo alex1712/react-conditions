@@ -17,7 +17,7 @@ var If = React.createClass({
 		var childrenCount = React.Children.count(this.props.children);
 		if(childrenCount === 0 || !testResult) return null;
 		
-		if (childrenCount === 1 && React.isValidElement(this.props.children)) return this.props.children;
+		if (React.isValidElement(this.props.children)) return this.props.children;
 		else return <div>{this.props.children}</div>;
 	}
 });
