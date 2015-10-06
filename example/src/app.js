@@ -1,6 +1,6 @@
 var React = require('react');
 
-var	{ Conditional, If } = require('react-conditions');
+var	{ Conditional, If, Switch } = require('react-conditions');
 
 var App = React.createClass({
 	render: function() {
@@ -154,6 +154,96 @@ var App = React.createClass({
 							Hello2
 						</Conditional.ElseIf>
 					</Conditional>
+				</p>
+
+
+				<p>
+					Input:<br/>
+					<pre className="code">
+{`	<Switch value="foo" breakInMatch={false}>
+		<Switch.Case testValue="bar">
+			BAR
+		</Switch.Case>
+		<Switch.Case testValue="foo">
+			Foo
+		</Switch.Case>
+		<Switch.Default>
+			Default
+		</Switch.Default>
+	</Switch>`}
+					</pre>
+					Output:<br/>
+					<Switch value="foo" breakInMatch={false}>
+						<Switch.Case testValue="bar">
+							BAR
+						</Switch.Case>
+						<Switch.Case testValue="foo">
+							Foo
+						</Switch.Case>
+						<Switch.Default>
+							Default
+						</Switch.Default>
+					</Switch>
+				</p>
+
+				<p>
+					Input:<br/>
+					<pre className="code">
+{`	<Switch value="foo" breakInMatch={false}>
+		<Switch.Case testValue="bar">
+			BAR
+		</Switch.Case>
+		<Switch.Case testValue="foo">
+			Foo
+			<Switch.Break />
+		</Switch.Case>
+		<Switch.Default>
+			Default
+		</Switch.Default>
+	</Switch>`}
+					</pre>
+					Output:<br/>
+					<Switch value="foo" breakInMatch={false}>
+						<Switch.Case testValue="bar">
+							BAR
+						</Switch.Case>
+						<Switch.Case testValue="foo">
+							Foo
+							<Switch.Break />
+						</Switch.Case>
+						<Switch.Default>
+							Default
+						</Switch.Default>
+					</Switch>
+				</p>
+
+				<p>
+					Input:<br/>
+					<pre className="code">
+{`	<Switch value="bar">
+		<Switch.Case testValue="bar">
+			BAR
+		</Switch.Case>
+		<Switch.Case testValue="foo">
+			Foo
+		</Switch.Case>
+		<Switch.Default>
+			Default
+		</Switch.Default>
+	</Switch>`}
+					</pre>
+					Output:<br/>
+					<Switch value="bar">
+						<Switch.Case testValue="bar">
+							BAR
+						</Switch.Case>
+						<Switch.Case testValue="foo">
+							Foo
+						</Switch.Case>
+						<Switch.Default>
+							Default
+						</Switch.Default>
+					</Switch>
 				</p>
 			</div>
 		)

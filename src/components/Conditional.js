@@ -39,13 +39,13 @@ Conditional.If = React.createClass({
 
 	propTypes: {
 		test: React.PropTypes.oneOfType([
-			React.PropTypes.bool.isRequired,
-			React.PropTypes.func.isRequired
-		])
+			React.PropTypes.bool,
+			React.PropTypes.func
+		]).isRequired
 	},
 
 	render(){
-		return <div>{this.props.children}</div>;
+		return React.isValidElement(this.props.children) ? this.props.children : <div>{this.props.children}</div>;
 	}
 });
 
@@ -53,20 +53,20 @@ Conditional.ElseIf = React.createClass({
 
 	propTypes: {
 		test: React.PropTypes.oneOfType([
-			React.PropTypes.bool.isRequired,
-			React.PropTypes.func.isRequired
-		])
+			React.PropTypes.bool,
+			React.PropTypes.func
+		]).isRequired
 	},
 
 	render(){
-		return <div>{this.props.children}</div>;
+		return React.isValidElement(this.props.children) ? this.props.children : <div>{this.props.children}</div>;
 	}
 });
 
 
 Conditional.Else = React.createClass({
 	render(){
-		return <div>{this.props.children}</div>;
+		return React.isValidElement(this.props.children) ? this.props.children : <div>{this.props.children}</div>;
 	}
 });
 

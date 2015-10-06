@@ -7,9 +7,9 @@ var If = React.createClass({
 	
 	propTypes: {
 		test: React.PropTypes.oneOfType([
-			React.PropTypes.bool.isRequired,
-			React.PropTypes.func.isRequired
-		])
+			React.PropTypes.bool,
+			React.PropTypes.func
+		]).isRequired
 	},
 
 	render(){
