@@ -7,6 +7,7 @@ var _require = require('react-conditions');
 
 var Conditional = _require.Conditional;
 var If = _require.If;
+var Switch = _require.Switch;
 
 var App = React.createClass({
 	displayName: 'App',
@@ -207,6 +208,103 @@ var App = React.createClass({
 								return 'foo' == 'foo';
 							} },
 						'Hello2'
+					)
+				)
+			),
+			React.createElement(
+				'p',
+				null,
+				'Input:',
+				React.createElement('br', null),
+				React.createElement(
+					'pre',
+					{ className: 'code' },
+					'\t<Switch value="foo" breakInMatch={false}>\n\t\t<Switch.Case testValue="bar">\n\t\t\tBAR\n\t\t</Switch.Case>\n\t\t<Switch.Case testValue="foo">\n\t\t\tFoo\n\t\t</Switch.Case>\n\t\t<Switch.Default>\n\t\t\tDefault\n\t\t</Switch.Default>\n\t</Switch>'
+				),
+				'Output:',
+				React.createElement('br', null),
+				React.createElement(
+					Switch,
+					{ value: 'foo', breakInMatch: false },
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'bar' },
+						'BAR'
+					),
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'foo' },
+						'Foo'
+					),
+					React.createElement(
+						Switch.Default,
+						null,
+						'Default'
+					)
+				)
+			),
+			React.createElement(
+				'p',
+				null,
+				'Input:',
+				React.createElement('br', null),
+				React.createElement(
+					'pre',
+					{ className: 'code' },
+					'\t<Switch value="foo" breakInMatch={false}>\n\t\t<Switch.Case testValue="bar">\n\t\t\tBAR\n\t\t</Switch.Case>\n\t\t<Switch.Case testValue="foo">\n\t\t\tFoo\n\t\t\t<Switch.Break />\n\t\t</Switch.Case>\n\t\t<Switch.Default>\n\t\t\tDefault\n\t\t</Switch.Default>\n\t</Switch>'
+				),
+				'Output:',
+				React.createElement('br', null),
+				React.createElement(
+					Switch,
+					{ value: 'foo', breakInMatch: false },
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'bar' },
+						'BAR'
+					),
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'foo' },
+						'Foo',
+						React.createElement(Switch.Break, null)
+					),
+					React.createElement(
+						Switch.Default,
+						null,
+						'Default'
+					)
+				)
+			),
+			React.createElement(
+				'p',
+				null,
+				'Input:',
+				React.createElement('br', null),
+				React.createElement(
+					'pre',
+					{ className: 'code' },
+					'\t<Switch value="bar">\n\t\t<Switch.Case testValue="bar">\n\t\t\tBAR\n\t\t</Switch.Case>\n\t\t<Switch.Case testValue="foo">\n\t\t\tFoo\n\t\t</Switch.Case>\n\t\t<Switch.Default>\n\t\t\tDefault\n\t\t</Switch.Default>\n\t</Switch>'
+				),
+				'Output:',
+				React.createElement('br', null),
+				React.createElement(
+					Switch,
+					{ value: 'bar' },
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'bar' },
+						'BAR'
+					),
+					React.createElement(
+						Switch.Case,
+						{ testValue: 'foo' },
+						'Foo'
+					),
+					React.createElement(
+						Switch.Default,
+						null,
+						'Default'
 					)
 				)
 			)

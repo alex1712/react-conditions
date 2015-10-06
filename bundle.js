@@ -44,11 +44,11 @@ Conditional.If = React.createClass({
 	displayName: 'If',
 
 	propTypes: {
-		test: React.PropTypes.oneOfType([React.PropTypes.bool.isRequired, React.PropTypes.func.isRequired])
+		test: React.PropTypes.oneOfType([React.PropTypes.bool, React.PropTypes.func]).isRequired
 	},
 
 	render: function render() {
-		return React.createElement(
+		return React.isValidElement(this.props.children) ? this.props.children : React.createElement(
 			'div',
 			null,
 			this.props.children
@@ -60,11 +60,11 @@ Conditional.ElseIf = React.createClass({
 	displayName: 'ElseIf',
 
 	propTypes: {
-		test: React.PropTypes.oneOfType([React.PropTypes.bool.isRequired, React.PropTypes.func.isRequired])
+		test: React.PropTypes.oneOfType([React.PropTypes.bool, React.PropTypes.func]).isRequired
 	},
 
 	render: function render() {
-		return React.createElement(
+		return React.isValidElement(this.props.children) ? this.props.children : React.createElement(
 			'div',
 			null,
 			this.props.children
@@ -76,7 +76,7 @@ Conditional.Else = React.createClass({
 	displayName: 'Else',
 
 	render: function render() {
-		return React.createElement(
+		return React.isValidElement(this.props.children) ? this.props.children : React.createElement(
 			'div',
 			null,
 			this.props.children
@@ -87,7 +87,7 @@ Conditional.Else = React.createClass({
 module.exports = Conditional;
 
 
-},{"../mixins/TestEvaluator":3,"../mixins/WithKeyedChildren":4,"react":undefined}],2:[function(require,module,exports){
+},{"../mixins/TestEvaluator":4,"../mixins/WithKeyedChildren":5,"react":undefined}],2:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -100,7 +100,7 @@ var If = React.createClass({
 	mixins: [TestEvaluator],
 
 	propTypes: {
-		test: React.PropTypes.oneOfType([React.PropTypes.bool.isRequired, React.PropTypes.func.isRequired])
+		test: React.PropTypes.oneOfType([React.PropTypes.bool, React.PropTypes.func]).isRequired
 	},
 
 	render: function render() {
@@ -119,7 +119,125 @@ var If = React.createClass({
 module.exports = If;
 
 
-},{"../mixins/TestEvaluator":3,"react":undefined}],3:[function(require,module,exports){
+},{"../mixins/TestEvaluator":4,"react":undefined}],3:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+
+var WithKeyedChildren = require('../mixins/WithKeyedChildren');
+
+var Switch = React.createClass({
+	displayName: 'Switch',
+
+	mixins: [WithKeyedChildren],
+
+	propTypes: {
+		value: React.PropTypes.any.isRequired,
+		breakInMatch: React.PropTypes.bool
+	},
+
+	getDefaultProps: function getDefaultProps() {
+		return {
+			breakInMatch: true
+		};
+	},
+
+	_hasChildABreak: function _hasChildABreak(el) {
+		return el.props.children.some ? el.props.children.some(function (child) {
+			return child.type === Switch.Break;
+		}) : false;
+	},
+
+	_findChildToRender: function _findChildToRender() {
+		var childrensCount = React.Children.count(this.props.children);
+		if (childrensCount === 0) return null;
+
+		if (childrensCount === 1) {
+			var child = this.props.children;
+			var shouldRender = child.type === Switch.Default || child.props.testValue === this.props.value;
+			return shouldRender ? child : null;
+		} else {
+			var wasBroken = false;
+			var childrenResult = [];
+			var children = this.findChildrenByType(Switch.Case);
+
+			for (var i = 0; i < children.length; ++i) {
+				var child = children[i];
+				if (this.props.value === child.props.testValue) {
+					childrenResult.push(child);
+					if (this.props.breakInMatch || this._hasChildABreak(child)) {
+						wasBroken = true;
+						break;
+					}
+				}
+			}
+			if (!wasBroken) {
+				var defaultChild = this.findChildByType(Switch.Default);
+				if (defaultChild) childrenResult.push(defaultChild);
+			}
+
+			if (childrenResult.length === 0) return null;else if (childrenResult.length === 1) return React.isValidElement(childrenResult[0]) ? childrenResult[0] : React.createElement(
+				'div',
+				null,
+				childrenResult[0]
+			);
+
+			return React.createElement(
+				'div',
+				null,
+				childrenResult
+			);
+		}
+	},
+
+	render: function render() {
+		var result = this._findChildToRender();
+		return !result ? null : result;
+	}
+});
+
+Switch.Break = React.createClass({
+	displayName: 'Break',
+
+	render: function render() {
+		return null;
+	}
+});
+
+Switch.Case = React.createClass({
+	displayName: 'Case',
+
+	mixins: [WithKeyedChildren],
+
+	propTypes: {
+		testValue: React.PropTypes.any.isRequired
+	},
+
+	render: function render() {
+		return React.isValidElement(this.props.children) ? this.props.children : React.createElement(
+			'div',
+			null,
+			this.props.children
+		);
+	}
+});
+
+Switch.Default = React.createClass({
+	displayName: 'Default',
+
+	render: function render() {
+		return React.isValidElement(this.props.children) ? this.props.children : React.createElement(
+			'div',
+			null,
+			this.props.children
+		);
+	}
+});
+
+module.exports = Switch;
+
+
+},{"../mixins/WithKeyedChildren":5,"react":undefined}],4:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -131,7 +249,7 @@ module.exports = {
 };
 
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -153,9 +271,10 @@ module.exports = {
 'use strict';
 
 module.exports = {
+	Switch: require('./components/Switch'),
 	Conditional: require('./components/Conditional'),
 	If: require('./components/If')
 };
 
 
-},{"./components/Conditional":1,"./components/If":2}]},{},[]);
+},{"./components/Conditional":1,"./components/If":2,"./components/Switch":3}]},{},[]);
