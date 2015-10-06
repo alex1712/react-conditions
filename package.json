@@ -1,6 +1,6 @@
 {
   "name": "react-conditions",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Component for rendering condition content.",
   "main": "lib/index.js",
   "author": "Alejandro Sellero",
@@ -30,7 +30,17 @@
     "react": "global:React"
   },
   "scripts": {
-    "test": "echo \"no tests yet\" && exit 0"
+    "test": "echo \"no tests yet\" && exit 0",
+    "build": "gulp clean && NODE_ENV=production gulp build",
+    "bump": "gulp bump",
+    "bump:major": "gulp bump:major",
+    "bump:minor": "gulp bump:minor",
+    "examples": "gulp dev:server",
+    "lint": "eslint .",
+    "publish:examples": "NODE_ENV=production gulp publish:examples",
+    "release": "NODE_ENV=production gulp release",
+    "start": "gulp dev",
+    "watch": "gulp watch:lib"
   },
   "keywords": [
     "react",
