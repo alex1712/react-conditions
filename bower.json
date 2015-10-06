@@ -1,7 +1,7 @@
 {
   "name": "react-conditions",
   "main": "dist/react-conditions.min.js",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "homepage": "https://github.com/alex1712/react-conditions",
   "authors": [
     "Alejandro Sellero"

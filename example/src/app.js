@@ -21,12 +21,12 @@ var App = React.createClass({
 				<p>
 					Input:<br/>
 					<pre className="code">
-{`	<If test={true}>
+{`	<If test={function() {return 'foo' == 'foo'}}>
 		Hello
 	</If>`}
 					</pre>
 					Output:<br/>
-					<If test={true}>
+					<If test={function() {return 'foo' == 'foo'}}>
 						Hello
 					</If>
 				</p>
@@ -130,6 +130,29 @@ var App = React.createClass({
 						<Conditional.Else >
 							Else
 						</Conditional.Else>
+					</Conditional>
+				</p>
+
+				<p>
+					Input:<br/>
+					<pre className="code">
+{`	<Conditional>
+		<Conditional.If test={function() { return  'foo' === 'bar';}}>
+			Hello
+		</Conditional.If>
+		<Conditional.ElseIf test={function() { return  'foo' === 'foo';}}>
+			Hello2
+		</Conditional.ElseIf>
+	</Conditional>`}
+					</pre>
+					Output:<br/>
+					<Conditional>
+						<Conditional.If test={function() { return  'foo' == 'bar';}}>
+							Hello
+						</Conditional.If>
+						<Conditional.ElseIf test={function() { return  'foo' == 'foo';}}>
+							Hello2
+						</Conditional.ElseIf>
 					</Conditional>
 				</p>
 			</div>

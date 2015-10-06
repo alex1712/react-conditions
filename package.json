@@ -1,6 +1,6 @@
 {
   "name": "react-conditions",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Component for rendering condition content.",
   "main": "src/index.js",
   "author": "Alejandro Sellero",

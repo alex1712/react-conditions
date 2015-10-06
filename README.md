@@ -26,7 +26,40 @@ TODO
 
 TODO
 
+
+
 ```
+var	{ Conditional, If } = require('react-conditions');
+
+<If test={true}>
+	<span>Hello</span>
+</If>
+```
+
+```
+var	{ Conditional, If } = require('react-conditions');
+
+<If test={function() { return 1 === 2}}>
+	<span>Hello</span>
+</If>
+```
+
+```
+var	{ Conditional, If } = require('react-conditions');
+
+<Conditional>
+	<Conditional.If test={function() { return  'foo' === 'bar';}}>
+		Hello
+	</Conditional.If>
+	<Conditional.ElseIf test={function() { return  'foo' === 'foo';}}>
+		Hello2
+	</Conditional.ElseIf>
+</Conditional>
+```
+
+```
+var	{ Conditional, If } = require('react-conditions');
+
 <Conditional>
 	<Conditional.If test={true}>
 		Hello
@@ -38,6 +71,8 @@ TODO
 ```
 
 ```
+var	{ Conditional, If } = require('react-conditions');
+
 <Conditional>
 	<Conditional.If test={false}>
 		Hello
