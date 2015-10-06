@@ -45,13 +45,15 @@ var App = React.createClass({
 				React.createElement(
 					'pre',
 					{ className: 'code' },
-					'\t<If test={true}>\n\t\tHello\n\t</If>'
+					'\t<If test={function() {return \'foo\' == \'foo\'}}>\n\t\tHello\n\t</If>'
 				),
 				'Output:',
 				React.createElement('br', null),
 				React.createElement(
 					If,
-					{ test: true },
+					{ test: function () {
+							return 'foo' == 'foo';
+						} },
 					'Hello'
 				)
 			),
@@ -174,6 +176,37 @@ var App = React.createClass({
 						Conditional.Else,
 						null,
 						'Else'
+					)
+				)
+			),
+			React.createElement(
+				'p',
+				null,
+				'Input:',
+				React.createElement('br', null),
+				React.createElement(
+					'pre',
+					{ className: 'code' },
+					'\t<Conditional>\n\t\t<Conditional.If test={function() { return  \'foo\' === \'bar\';}}>\n\t\t\tHello\n\t\t</Conditional.If>\n\t\t<Conditional.ElseIf test={function() { return  \'foo\' === \'foo\';}}>\n\t\t\tHello2\n\t\t</Conditional.ElseIf>\n\t</Conditional>'
+				),
+				'Output:',
+				React.createElement('br', null),
+				React.createElement(
+					Conditional,
+					null,
+					React.createElement(
+						Conditional.If,
+						{ test: function () {
+								return 'foo' == 'bar';
+							} },
+						'Hello'
+					),
+					React.createElement(
+						Conditional.ElseIf,
+						{ test: function () {
+								return 'foo' == 'foo';
+							} },
+						'Hello2'
 					)
 				)
 			)
