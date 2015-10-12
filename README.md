@@ -3,6 +3,17 @@ React Conditional
 
 TODO
 
+PLease, always remember that children are going to be evaluated always to be sent to the component, so the next code would break:
+
+```
+var	{ Conditional, If, Switch } = require('react-conditions');
+
+<If test={typeof foo !== 'undefined'}>
+	<span>{foo.bar}</span>
+</If>
+```
+
+It would break because foo is going to be undefined and the span children is going to be evaluated althougt wouldn't be render in the DOM.
 
 ## Demo & Examples
 
